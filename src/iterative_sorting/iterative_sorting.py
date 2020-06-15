@@ -2,25 +2,78 @@
 def selection_sort(arr):
     # loop through n-1 elements
     for i in range(0, len(arr) - 1):
+        # Set first element as minimum
+        # check if element < minimum
+        # if it is, set element as new minimum
+        # at the end of the list, the smallest found element is switched with
+        # the element that the loop started on
+
         cur_index = i
         smallest_index = cur_index
-        # TO-DO: find next smallest element
-        # (hint, can do in 3 loc)
-        # Your code here
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[smallest_index]:
+                smallest_index = j
+        arr[i], arr[smallest_index] = arr[smallest_index], arr[i]
+
+    return arr
 
 
-        # TO-DO: swap
-        # Your code here
+def selection_sort_alt(arr):
+    curr_index = 0
+    while curr_index < len(arr):
+        smallest = min(arr[curr_index:])
+        smallest_index = arr.index(smallest)
+        arr[curr_index], arr[smallest_index] = arr[smallest_index], arr[curr_index]
+        curr_index += 1
 
     return arr
 
 
 # TO-DO:  implement the Bubble Sort function below
 def bubble_sort(arr):
-    # Your code here
-
+    # Compare left element and right element
+    # if left element > right element, swap them
+    # Repeat til sorted
+    i = 0
+    while i < len(arr) - 1:
+        j = 0
+        while j < len(arr) - 1:
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j + 1] = arr[j+1], arr[j]
+            j += 1
+        i += 1
 
     return arr
+
+
+def bubble_sort_alt(arr):
+    for i in range(0, len(arr)):
+        swapped = False
+        while i < len(arr) - 1:
+            if arr[i] > arr[i + 1]:
+                arr[i], arr[i + 1] = arr[i + 1], arr[i]
+                swapped = True
+            i = i + 1
+        if swapped == False:
+            break
+    return arr
+
+
+def bubble_sort_alt_2(arr):
+    for i in range(len(arr) - 1):
+        for j in range(i + 1, len(arr)):
+            if arr[i] > arr[j]:
+                arr[i], arr[j] = arr[j], arr[i]
+    return arr
+
+
+arr = [12, 18, 6, 3, 7, 19, 11, 4, 5, 13, 17]
+print(arr)
+# print(selection_sort(arr))
+# print(bubble_sort(arr))
+# print(bubble_sort_alt(arr))
+# print(bubble_sort_alt_2(arr))
+print(selection_sort(arr))
 
 '''
 STRETCH: implement the Count Sort function below
@@ -39,8 +92,8 @@ buckets.
 
 What is the time and space complexity of the counting sort algorithm?
 '''
-def counting_sort(arr, maximum=None):
-    # Your code here
 
+
+def counting_sort(arr, maximum=None):
 
     return arr
